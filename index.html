@@ -6,301 +6,111 @@
     <title>Miranda Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        background: 'oklch(1 0 0)',
-                        foreground: 'oklch(0.145 0 0)',
-                        card: 'oklch(1 0 0)',
-                        'card-foreground': 'oklch(0.145 0 0)',
-                        popover: 'oklch(1 0 0)',
-                        'popover-foreground': 'oklch(0.145 0 0)',
-                        primary: 'oklch(0.6 0.2 340)',
-                        'primary-foreground': 'oklch(0.985 0 0)',
-                        secondary: 'oklch(0.97 0 0)',
-                        'secondary-foreground': 'oklch(0.205 0 0)',
-                        muted: 'oklch(0.97 0 0)',
-                        'muted-foreground': 'oklch(0.556 0 0)',
-                        accent: 'oklch(0.97 0 0)',
-                        'accent-foreground': 'oklch(0.205 0 0)',
-                        destructive: 'oklch(0.577 0.245 27.325)',
-                        'destructive-foreground': 'oklch(0.577 0.245 27.325)',
-                        border: 'oklch(0.922 0 0)',
-                        input: 'oklch(0.922 0 0)',
-                        ring: 'oklch(0.708 0 0)',
-                        'chart-1': 'oklch(0.646 0.222 41.116)',
-                        'chart-2': 'oklch(0.6 0.118 184.704)',
-                        'chart-3': 'oklch(0.398 0.07 227.392)',
-                        'chart-4': 'oklch(0.828 0.189 84.429)',
-                        'chart-5': 'oklch(0.769 0.188 70.08)',
-                        sidebar: 'oklch(0.985 0 0)',
-                        'sidebar-foreground': 'oklch(0.145 0 0)',
-                        'sidebar-primary': 'oklch(0.205 0 0)',
-                        'sidebar-primary-foreground': 'oklch(0.985 0 0)',
-                        'sidebar-accent': 'oklch(0.97 0 0)',
-                        'sidebar-accent-foreground': 'oklch(0.205 0 0)',
-                        'sidebar-border': 'oklch(0.922 0 0)',
-                        'sidebar-ring': 'oklch(0.708 0 0)',
-                    },
-                    borderRadius: {
-                        lg: 'var(--radius)',
-                        md: 'calc(var(--radius) - 2px)',
-                        sm: 'calc(var(--radius) - 4px)',
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
-                        'float': 'float 3s ease-in-out infinite',
-                        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'bounce': 'bounce 1s infinite',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                    }
-                }
-            }
-        }
-    </script>
-    <style type="text/css">
-        :root {
-            --radius: 0.625rem;
-        }
-
-        * {
-            border-color: oklch(0.922 0 0);
-        }
-
-        body {
-            background-color: oklch(1 0 0);
-            color: oklch(0.145 0 0);
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        }
-
-        .delay-200 {
-            animation-delay: 200ms;
-        }
-
-        .delay-400 {
-            animation-delay: 400ms;
-        }
-
+    <style>
         .bg-gradient-custom {
             background: linear-gradient(to bottom right, #fecaca, #ffffff, #fbcfe8);
         }
-
+        
         .bg-gradient-footer {
-            background: linear-gradient(to right, oklch(0.6 0.2 340), oklch(0.5 0.2 340));
+            background: linear-gradient(to right, #ec4899, #db2777);
         }
-
-        .bg-gradient-education {
-            background: linear-gradient(to right, #dbeafe, #e0e7ff);
+        
+        .section {
+            display: none;
         }
-
-        .bg-gradient-motto {
-            background: linear-gradient(to bottom right, rgba(236, 72, 153, 0.05), rgba(219, 39, 119, 0.05), rgba(236, 72, 153, 0.05));
+        
+        .section.active {
+            display: block;
         }
-
-        .bg-gradient-text {
-            background: linear-gradient(to right, oklch(0.6 0.2 340), oklch(0.5 0.2 340), oklch(0.6 0.2 340));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        
+        .nav-button.active {
+            background-color: #ec4899;
+            color: white;
         }
-
-        .backdrop-blur-sm {
-            backdrop-filter: blur(4px);
+        
+        .nav-button {
+            background-color: white;
+            color: #ec4899;
         }
-
-        .backdrop-blur-md {
-            backdrop-filter: blur(8px);
-        }
-
-        .animate-fade-in-up {
-            animation: fadeInUp 0.5s ease-out forwards;
-        }
-
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        .animate-bounce {
-            animation: bounce 1s infinite;
-        }
-
-        .opacity-0 {
-            opacity: 0;
-        }
-
-        .leading-relaxed {
-            line-height: 1.625;
-        }
-
-        .shadow-2xl {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-
-        .hover\:scale-105:hover {
-            transform: scale(1.05);
-        }
-
-        .hover\:scale-110:hover {
-            transform: scale(1.1);
-        }
-
-        .transition-all {
-            transition: all 0.3s ease;
-        }
-
-        .transition-transform {
-            transition: transform 0.3s ease;
-        }
-
-        .bg-blue-100 {
-            background-color: rgba(219, 234, 254, 1);
-        }
-
-        .text-blue-600 {
-            color: rgba(37, 99, 235, 1);
-        }
-
-        .bg-purple-100 {
-            background-color: rgba(243, 232, 255, 1);
-        }
-
-        .text-purple-600 {
-            color: rgba(147, 51, 234, 1);
-        }
-
-        .bg-orange-100 {
-            background-color: rgba(255, 237, 213, 1);
-        }
-
-        .text-orange-600 {
-            color: rgba(234, 88, 12, 1);
-        }
-
-        .bg-red-100 {
-            background-color: rgba(254, 226, 226, 1);
-        }
-
-        .text-red-600 {
-            color: rgba(220, 38, 38, 1);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: .5;
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 53%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40%, 43% {
-                transform: translateY(-15px);
-            }
-            70% {
-                transform: translateY(-7px);
-            }
-            90% {
-                transform: translateY(-3px);
+            
+            .mobile-nav button {
+                flex: 1;
+                min-width: 80px;
+                font-size: 12px;
+                padding: 8px 4px;
             }
         }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-custom">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-rose-100">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 border-b border-pink-200">
         <div class="max-w-6xl mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
-                <div class="font-bold text-xl text-primary">Miranda Sihombing</div>
-                <div class="hidden md:flex space-x-8">
-                    <button onclick="scrollToSection('dashboard')" class="px-4 py-2 rounded-full transition-all duration-300 text-primary bg-primary text-primary-foreground shadow-lg">Dashboard</button>
-                    <button onclick="scrollToSection('profil')" class="px-4 py-2 rounded-full transition-all duration-300 text-muted-foreground hover:text-primary hover:bg-rose-50">Profil</button>
-                    <button onclick="scrollToSection('keluarga')" class="px-4 py-2 rounded-full transition-all duration-300 text-muted-foreground hover:text-primary hover:bg-rose-50">Keluarga</button>
-                    <button onclick="scrollToSection('pendidikan')" class="px-4 py-2 rounded-full transition-all duration-300 text-muted-foreground hover:text-primary hover:bg-rose-50">Pendidikan</button>
-                    <button onclick="scrollToSection('motto')" class="px-4 py-2 rounded-full transition-all duration-300 text-muted-foreground hover:text-primary hover:bg-rose-50">Motto</button>
+                <div class="font-bold text-xl text-pink-600">Miranda Sihombing</div>
+                <div class="hidden md:flex space-x-4">
+                    <button onclick="showSection('dashboard')" class="nav-button active px-4 py-2 rounded-full border border-pink-300">Dashboard</button>
+                    <button onclick="showSection('profil')" class="nav-button px-4 py-2 rounded-full border border-pink-300">Profil</button>
+                    <button onclick="showSection('keluarga')" class="nav-button px-4 py-2 rounded-full border border-pink-300">Keluarga</button>
+                    <button onclick="showSection('pendidikan')" class="nav-button px-4 py-2 rounded-full border border-pink-300">Pendidikan</button>
+                    <button onclick="showSection('motto')" class="nav-button px-4 py-2 rounded-full border border-pink-300">Motto</button>
+                </div>
+                <!-- Mobile Navigation -->
+                <div class="md:hidden mobile-nav">
+                    <button onclick="showSection('dashboard')" class="nav-button active px-2 py-1 rounded border border-pink-300">Dashboard</button>
+                    <button onclick="showSection('profil')" class="nav-button px-2 py-1 rounded border border-pink-300">Profil</button>
+                    <button onclick="showSection('keluarga')" class="nav-button px-2 py-1 rounded border border-pink-300">Keluarga</button>
+                    <button onclick="showSection('pendidikan')" class="nav-button px-2 py-1 rounded border border-pink-300">Pendidikan</button>
+                    <button onclick="showSection('motto')" class="nav-button px-2 py-1 rounded border border-pink-300">Motto</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="dashboard" class="pt-20 pb-16 px-4">
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="section active pt-20 pb-16 px-4">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 animate-fade-in-up">
+            <div class="text-center mb-16">
                 <div class="inline-flex items-center gap-2 mb-4">
-                    <i class="fas fa-sparkle text-primary animate-pulse text-xl"></i>
-                    <span class="text-lg font-medium text-primary">Selamat Datang di</span>
-                    <i class="fas fa-sparkle text-primary animate-pulse text-xl"></i>
+                    <i class="fas fa-sparkle text-pink-600 text-xl"></i>
+                    <span class="text-lg font-medium text-pink-600">Selamat Datang di</span>
+                    <i class="fas fa-sparkle text-pink-600 text-xl"></i>
                 </div>
-                <h2 class="text-5xl md:text-7xl font-bold bg-gradient-text mb-6">Dashboard Miranda</h2>
-                <p class="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                <h2 class="text-5xl md:text-7xl font-bold text-pink-600 mb-6">Dashboard Miranda</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
                     Apapun yang kamu minta didalam doa dengan penuh kepercayaan, kamu akan menerimanya. 🌈✨
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="animate-fade-in-up delay-200">
+                <div>
                     <div class="relative">
                         <div class="w-80 h-80 mx-auto relative">
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full animate-pulse opacity-20"></div>
+                            <div class="absolute inset-0 bg-pink-200 rounded-full opacity-20"></div>
                             <div class="absolute inset-2 bg-white rounded-full shadow-2xl overflow-hidden">
                                 <img src="profil.jpg" alt="Miranda Sihombing" class="w-full h-full object-cover">
                             </div>
-                            <div class="absolute -top-4 -right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center animate-float">
+                            <div class="absolute -top-4 -right-4 w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center">
                                 <i class="fas fa-heart text-white text-xl"></i>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="animate-fade-in-up delay-400">
-                    <div class="p-8 shadow-xl border-0 bg-white/50 backdrop-blur-sm rounded-xl">
-                        <div class="p-0">
-                            <h2 class="text-3xl font-bold text-primary mb-4">Halo, Saya Miranda Sihombing</h2>
-                            <p class="text-lg text-muted-foreground leading-relaxed mb-6">
-                                Saya adalah mahasiswa semester 5 di Politeknik Negeri Medan dengan jurusan Teknik Komputer dan
-                                Informatika. Saya suka teknologi dan selalu siap untuk belajar hal-hal baru.
-                            </p>
-                            </div>
-                        </div>
+                <div>
+                    <div class="p-8 shadow-xl bg-white/70 rounded-xl">
+                        <h2 class="text-3xl font-bold text-pink-600 mb-4">Halo, Saya Miranda Sihombing</h2>
+                        <p class="text-lg text-gray-600 mb-6">
+                            Saya adalah mahasiswa semester 5 di Politeknik Negeri Medan dengan jurusan Teknik Komputer dan
+                            Informatika. Saya suka teknologi dan selalu siap untuk belajar hal-hal baru.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -308,155 +118,144 @@
     </section>
 
     <!-- Profile Section -->
-    <section id="profil" class="py-16 px-4 bg-gradient-to-r from-rose-50 to-pink-50">
+    <section id="profil" class="section py-16 px-4 bg-pink-50">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-primary mb-4">Profil Saya</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+                <h2 class="text-4xl font-bold text-pink-600 mb-4">Profil Saya</h2>
+                <div class="w-24 h-1 bg-pink-600 mx-auto rounded-full"></div>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12">
-                <div class="p-8 shadow-xl border-0 bg-white/70 backdrop-blur-sm rounded-xl">
-                    <div class="p-0">
-                        <div class="flex items-center gap-6 mb-8">
-                            <div class="w-24 h-24 rounded-full overflow-hidden shadow-lg">
-                                <img src="fotoprofil.jpg" alt="Miranda Profile" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-primary">Miranda Sihombing</h3>
-                                <p class="text-muted-foreground flex items-center gap-2">
-                                    <i class="far fa-calendar-alt"></i>
-                                    06 November 2004 
-                                </p>
-                            </div>
+                <div class="p-8 shadow-xl bg-white/70 rounded-xl">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-24 h-24 rounded-full overflow-hidden shadow-lg">
+                            <img src="fotoprofil.jpg" alt="Miranda Profile" class="w-full h-full object-cover">
                         </div>
-
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-center gap-3">
-                                <div class="w-2 h-2 bg-primary rounded-full"></div>
-                                <span class="font-medium">Kepribadian:</span>
-                                <span class="text-muted-foreground">Ceria, Mudah Menangis, Suka Anak Kecil</span>
-                            </div>
-                        </div>
-
                         <div>
-                            <h4 class="text-lg font-semibold mb-4 text-primary">Hobi Saya</h4>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-blue-100 text-blue-600 p-4 rounded-xl flex items-center gap-3 hover:scale-105 transition-transform cursor-pointer">
-                                    <i class="fas fa-book-open"></i>
-                                    <span class="font-medium">Membaca</span>
-                                </div>
-                                <div class="bg-purple-100 text-purple-600 p-4 rounded-xl flex items-center gap-3 hover:scale-105 transition-transform cursor-pointer">
-                                    <i class="fas fa-music"></i>
-                                    <span class="font-medium">Musik</span>
-                                </div>
-                                <div class="bg-orange-100 text-orange-600 p-4 rounded-xl flex items-center gap-3 hover:scale-105 transition-transform cursor-pointer">
-                                    <i class="fas fa-utensils"></i>
-                                    <span class="font-medium">Memasak</span>
-                                </div>
-                                <div class="bg-red-100 text-red-600 p-4 rounded-xl flex items-center gap-3 hover:scale-105 transition-transform cursor-pointer">
-                                    <i class="fas fa-film"></i>
-                                    <span class="font-medium">Nonton Film</span>
-                                </div>
+                            <h3 class="text-2xl font-bold text-pink-600">Miranda Sihombing</h3>
+                            <p class="text-gray-600 flex items-center gap-2">
+                                <i class="far fa-calendar-alt"></i>
+                                06 November 2004 
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-pink-600 rounded-full"></div>
+                            <span class="font-medium">Kepribadian:</span>
+                            <span class="text-gray-600">Ceria, Mudah Menangis, Suka Anak Kecil</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-pink-600">Hobi Saya</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-blue-100 text-blue-600 p-4 rounded-xl flex items-center gap-3">
+                                <i class="fas fa-book-open"></i>
+                                <span class="font-medium">Membaca</span>
+                            </div>
+                            <div class="bg-purple-100 text-purple-600 p-4 rounded-xl flex items-center gap-3">
+                                <i class="fas fa-music"></i>
+                                <span class="font-medium">Musik</span>
+                            </div>
+                            <div class="bg-orange-100 text-orange-600 p-4 rounded-xl flex items-center gap-3">
+                                <i class="fas fa-utensils"></i>
+                                <span class="font-medium">Memasak</span>
+                            </div>
+                            <div class="bg-red-100 text-red-600 p-4 rounded-xl flex items-center gap-3">
+                                <i class="fas fa-film"></i>
+                                <span class="font-medium">Nonton Film</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-8 shadow-xl border-0 bg-white/70 backdrop-blur-sm rounded-xl">
-                    <div class="p-0">
-                        <h3 class="text-2xl font-bold text-primary mb-6">Sejarah Diri</h3>
-                        <div class="space-y-6 text-muted-foreground leading-relaxed">
-                            <p>
-                                Saya lahir di salah satu desa di Kecamatan Lintongnihuta. Tumbuh besar bersama kakak, abang, dan
-                                kedua adik saya dalam keluarga yang penuh kasih sayang. Selama saya sekolah saya sering mendapatkan juara kelas.
-                            </p>
+                <div class="p-8 shadow-xl bg-white/70 rounded-xl">
+                    <h3 class="text-2xl font-bold text-pink-600 mb-6">Sejarah Diri</h3>
+                    <div class="space-y-6 text-gray-600">
+                        <p>
+                            Saya lahir di salah satu desa di Kecamatan Lintongnihuta. Tumbuh besar bersama kakak, abang, dan
+                            kedua adik saya dalam keluarga yang penuh kasih sayang. Selama saya sekolah saya sering mendapatkan juara kelas.
+                        </p>
 
-                            <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 rounded-xl">
-                                <h4 class="font-semibold text-primary mb-4">Prestasi Akademik</h4>
-                                <div class="grid grid-cols-3 gap-4">
-                                    <div class="text-center">
-                                        <div class="text-2xl mb-2">🥈</div>
-                                        <div class="font-semibold">SD</div>
-                                        <div class="text-sm text-muted-foreground">Juara 2</div>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="text-2xl mb-2">🥇</div>
-                                        <div class="font-semibold">SMP</div>
-                                        <div class="text-sm text-muted-foreground">Juara 1</div>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="text-2xl mb-2">🥈</div>
-                                        <div class="font-semibold">SMK</div>
-                                        <div class="text-sm text-muted-foreground">Juara 2</div>
-                                    </div>
+                        <div class="bg-pink-50 p-6 rounded-xl">
+                            <h4 class="font-semibold text-pink-600 mb-4">Prestasi Akademik</h4>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="text-center">
+                                    <div class="text-2xl mb-2">🥈</div>
+                                    <div class="font-semibold">SD</div>
+                                    <div class="text-sm text-gray-600">Juara 2</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl mb-2">🥇</div>
+                                    <div class="font-semibold">SMP</div>
+                                    <div class="text-sm text-gray-600">Juara 1</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl mb-2">🥈</div>
+                                    <div class="font-semibold">SMK</div>
+                                    <div class="text-sm text-gray-600">Juara 2</div>
                                 </div>
                             </div>
-
-                            <p>
-                                Saya masuk ke Politeknik Negeri Medan melalui jalur SNBP dan dibiayai kuliah oleh abang saya.
-                                Dulu saya sempat takut dan bertanya apakah saya nantinya bisa melanjutkan kuliah saya ini, padahal
-                                saya melihat perekonomian orang tua saya sangatlah kurang. Puji Tuhan saya bisa melanjutkan perkuliahan saya ini
-                                hingga mau semester akhir yang mulai dari awal kuliah di Politeknik Negeri Medan dibiayai oleh abang saya.
-                                Dulu selama masih bersekolah ketika hari libur tiba saya dan kakak dan abang saya selalu pergi keladang orang untuk bekerja
-                                mulai dari pagi sampe sore diladang orang, kami dibayar hanya 70.000 saja perorang. 
-                                Pengalaman bekerja di ladang saat libur sekolah mengajarkan saya nilai kerja keras dan menghargai
-                                setiap kesempatan.
-                            </p>
                         </div>
+
+                        <p>
+                            Saya masuk ke Politeknik Negeri Medan melalui jalur SNBP dan dibiayai kuliah oleh abang saya.
+                            Dulu saya sempat takut dan bertanya apakah saya nantinya bisa melanjutkan kuliah saya ini, padahal
+                            saya melihat perekonomian orang tua saya sangatlah kurang. Puji Tuhan saya bisa melanjutkan perkuliahan saya ini
+                            hingga mau semester akhir yang mulai dari awal kuliah di Politeknik Negeri Medan dibiayai oleh abang saya.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Family Section -->
-    <section id="keluarga" class="py-16 px-4">
+    <section id="keluarga" class="section py-16 px-4">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-primary mb-4">Keluarga Saya</h2>
-                <p class="text-xl text-muted-foreground">Keluarga adalah segalanya bagi saya</p>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mt-4"></div>
+                <h2 class="text-4xl font-bold text-pink-600 mb-4">Keluarga Saya</h2>
+                <p class="text-xl text-gray-600">Keluarga adalah segalanya bagi saya</p>
+                <div class="w-24 h-1 bg-pink-600 mx-auto rounded-full mt-4"></div>
             </div>
 
-            <div class="p-8 shadow-xl border-0 bg-gradient-to-br from-white to-rose-50 rounded-xl">
+            <div class="p-8 shadow-xl bg-white rounded-xl">
                 <!-- Orang Tua -->
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-semibold text-primary mb-4">Orang Tua</h3>
+                    <h3 class="text-2xl font-semibold text-pink-600 mb-4">Orang Tua</h3>
                     <p class="text-gray-600 max-w-3xl mx-auto">Dua manusia hebat yang telah membesarkan dan mendidik kami dengan penuh kasih sayang.</p>
                 </div>
                 <div class="grid md:grid-cols-2 gap-8 mb-16">
                     <!-- Ayah -->
-                    <div class="parent-card family-card p-6 rounded-lg shadow-md flex flex-col md:flex-row items-center md:items-start gap-6">
+                    <div class="p-6 rounded-lg shadow-md bg-blue-50 flex flex-col md:flex-row items-center md:items-start gap-6">
                         <div class="w-40 h-40 rounded-full overflow-hidden shadow-lg border-4 border-blue-100 flex-shrink-0">
                             <img src="bapak.jpg" alt="bapak" class="w-full h-full object-cover">
                         </div>
                         <div class="text-center md:text-left">
-                            <h3 class="font-semibold text-xl text-primary mb-2">Bapak</h3>
+                            <h3 class="font-semibold text-xl text-pink-600 mb-2">Bapak</h3>
                             <p class="text-gray-700 font-medium mb-2">Rinson Sihombing</p>
                             <p class="text-gray-600 text-sm mb-2"><i class="fas fa-briefcase mr-2"></i>Petani</p>
-                            <p class="text-gray-600 text-sm"
-                            >Bapak adalah sosok orang yang keras tapi hatinya sangatla lembut, hatinya mudah tersentuh dan bahkan beliau tidak segan untuk mengeluarkan air matanya. 
-                            Beliau mengajarkan kami tentang tanggung jawab, disiplin, dan pentingnya pendidikan. Beliau hampir tiap hari keladang, dan sawah. Dulu bapak sering bekerja keladang orang
-                            tapi Sekarang bapak tidak lagi harus bekerja keladang orang karena Puji Tuhan perekonomian di kelurga kami sekarang sudah membaik. 
-                            Bapak lahir pada 21 Juni 1978 dan sekarang beliau berumur 47 tahun.
-                                                            
+                            <p class="text-gray-600 text-sm">
+                                Bapak adalah sosok orang yang keras tapi hatinya sangatlah lembut, hatinya mudah tersentuh dan bahkan beliau tidak segan untuk mengeluarkan air matanya. 
+                                Beliau mengajarkan kami tentang tanggung jawab, disiplin, dan pentingnya pendidikan. Bapak lahir pada 21 Juni 1978 dan sekarang beliau berumur 47 tahun.
                             </p>
                         </div>
                     </div>
 
                     <!-- Ibu -->
-                    <div class="parent-card family-card p-6 rounded-lg shadow-md flex flex-col md:flex-row items-center md:items-start gap-6">
+                    <div class="p-6 rounded-lg shadow-md bg-pink-50 flex flex-col md:flex-row items-center md:items-start gap-6">
                         <div class="w-40 h-40 rounded-full overflow-hidden shadow-lg border-4 border-pink-100 flex-shrink-0">
                             <img src="mamak.jpg" alt="Mamak" class="w-full h-full object-cover">
                         </div>
                         <div class="text-center md:text-left">
-                            <h3 class="font-semibold text-xl text-primary mb-2">Mamak</h3>
+                            <h3 class="font-semibold text-xl text-pink-600 mb-2">Mamak</h3>
                             <p class="text-gray-700 font-medium mb-2">Nurcahaya Siburian</p>
                             <p class="text-gray-600 text-sm mb-2"><i class="fas fa-briefcase mr-2"></i>Ibu Rumah Tangga</p>
                             <p class="text-gray-600 text-sm">
-                            Mamak adalah malaikat pelindung kami. Kasih sayangnya tidak pernah berhenti mengalir, selalu mendukung dan menyemangati kami dalam setiap langkah. Keahliannya memasak membuat keluarga selalu rindu berkumpul untuk memakan masakan mamak.
-                            Mamak adalah orang wanita yang paling sabar didunia. Pelukan hangatnya dapat membuat hati lebih tenang, aman, dan damai. Jika mamak tidak rumah maka rumah akan sepi.
-                            Mamak lahir pada 19 September 1977 dan sekarang beliau sudah berumur 48 tahun dan telah memiliki 1 cucu. 
+                                Mamak adalah malaikat pelindung kami. Kasih sayangnya tidak pernah berhenti mengalir, selalu mendukung dan menyemangati kami dalam setiap langkah.
+                                Mamak lahir pada 19 September 1977 dan sekarang beliau sudah berumur 48 tahun dan telah memiliki 1 cucu.
                             </p>
                         </div>
                     </div>
@@ -464,232 +263,185 @@
 
                 <!-- Saudara Kandung -->
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-semibold text-primary mb-4">Saudara Kandung</h3>
+                    <h3 class="text-2xl font-semibold text-pink-600 mb-4">Saudara Kandung</h3>
                     <p class="text-gray-600 max-w-3xl mx-auto">Mereka adalah sahabat sejati yang selalu ada dalam suka dan duka.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
                     <!-- Kakak Perempuan -->
-                    <div class="sibling-card family-card p-6 rounded-lg shadow-md text-center">
+                    <div class="p-6 rounded-lg shadow-md bg-blue-50 text-center">
                         <div class="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4 border-4 border-blue-100">
                             <img src="kakak.jpg" alt="Kakak Perempuan" class="w-full h-full object-cover">
                         </div>
-                        <h3 class="font-semibold text-lg text-primary mb-2">Kakak Perempuan</h3>
+                        <h3 class="font-semibold text-lg text-pink-600 mb-2">Kakak Perempuan</h3>
                         <p class="text-gray-700 font-medium mb-2">Melika Rosalina Sihombing</p>
                         <p class="text-gray-600 text-sm mb-2"><i class="fas fa-briefcase mr-2"></i>Ibu Rumah Tangga</p>
-                        <p class="text-gray-600 text-sm"
-                        >Kakak adalah perempuan kedua yang paling saya sayangi setelah mamak. Beliau adalah seseorang yang bisa saya ajak cerita tentang apapun itu.
-                        Beliau selalu mengusahakan apapun yang saya inginkan. Kado dihari ulangtahun tidak pernah terlewatkan sedikitpun. Sebelum beliau menikah, beliau
-                        banyak mengajarkan banyak hal kepada saya. Beliau lahir pada 05 Mei 2000. Sekarang beliau sudah menjadi seorang ibu dan memiliki Putri yang sangat cantik Bernama <b>Fayola Doreen Butar-butar</b>
+                        <p class="text-gray-600 text-sm">
+                            Kakak adalah perempuan kedua yang paling saya sayangi setelah mamak. Beliau lahir pada 05 Mei 2000. 
+                            Sekarang beliau sudah menjadi seorang ibu dan memiliki Putri yang sangat cantik Bernama <b>Fayola Doreen Butar-butar</b>
                         </p>
                     </div>
 
                     <!-- Kakak Laki-laki -->
-                    <div class="sibling-card family-card p-6 rounded-lg shadow-md text-center">
-                        <div class="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4 border-4 border-blue-100">
+                    <div class="p-6 rounded-lg shadow-md bg-green-50 text-center">
+                        <div class="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4 border-4 border-green-100">
                             <img src="abang.jpg" alt="Abang" class="w-full h-full object-cover">
                         </div>
-                        <h3 class="font-semibold text-lg text-primary mb-2">Abang</h3>
+                        <h3 class="font-semibold text-lg text-pink-600 mb-2">Abang</h3>
                         <p class="text-gray-700 font-medium mb-2">Berman Boyma Sihombing</p>
                         <p class="text-gray-600 text-sm mb-2"><i class="fas fa-briefcase mr-2"></i>Pengusaha</p>
-                        <p class="text-gray-600 text-sm"
-                        >Abang adalah seseorang yang sangat berperan didalam hidup saya setelah saya lulus dari SMK dan masuk jalur SNBP di Politeknik Negeri Medan
-                        dari awal saya masuk kuliah dan sampai sekarang beliaulah yang paling banyak berkorban untuk membiayai hidup saya selama kuliah. Beliau seorang pekerja keras, baik hati dan sangat ramah kepada siapapun.
-                        Beliau banyak mengajarkan banyak hal kepada saya. Melihatnya sukses di usia muda adalah salah satu inspirasi bagi saya agar kelak bisa seperti beliau.
-                        Beliau lahir pada 20 Mei 2002.
-                    </p>
-                    </div>
-
-                    
-                    <div class="sibling-card family-card p-6 rounded-lg shadow-md text-center">
-                        <div class="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4 border-4 border-blue-100">
-                            <img src="adikpertama.jpg" alt="Adik Pertama" class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="font-semibold text-lg text-primary mb-2">Adik Pertama</h3>
-                        <p class="text-gray-700 font-medium mb-2">Bima Yason Sihombing</p>
-                        <p class="text-gray-600 text-sm mb-2"><i class="fas fa-graduation-cap mr-2"></i>Tentara</p>
-                        <p class="text-gray-600 text-sm">Bima adalah adik pertama saya. Dikeluarga dialah anak laki-laki yang paling ganteng.
-                            Sekarang dia sudah menjadi seorang tentara. Dia telah berhasil meraih cita-citanya. Dikeluarga dia adalah anak yang jarang juara kelas dibandingkan kakak dan adiknya
-                            tapi itu tidak membuatnya patah semangat sehingga sekarang dia bisa menjadi seorang tentara. Dia lahir pada 02 Oktober 2006.
+                        <p class="text-gray-600 text-sm">
+                            Abang adalah seseorang yang sangat berperan didalam hidup saya. Beliaulah yang membiayai hidup saya selama kuliah. 
+                            Beliau lahir pada 20 Mei 2002.
                         </p>
                     </div>
 
-                    
-                    <div class="sibling-card family-card p-6 rounded-lg shadow-md text-center">
-                        <div class="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4 border-4 border-blue-100">
+                    <!-- Adik Pertama -->
+                    <div class="p-6 rounded-lg shadow-md bg-yellow-50 text-center">
+                        <div class="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4 border-4 border-yellow-100">
+                            <img src="adikpertama.jpg" alt="Adik Pertama" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-semibold text-lg text-pink-600 mb-2">Adik Pertama</h3>
+                        <p class="text-gray-700 font-medium mb-2">Bima Yason Sihombing</p>
+                        <p class="text-gray-600 text-sm mb-2"><i class="fas fa-graduation-cap mr-2"></i>Tentara</p>
+                        <p class="text-gray-600 text-sm">
+                            Bima adalah adik pertama saya. Sekarang dia sudah menjadi seorang tentara. 
+                            Dia lahir pada 02 Oktober 2006.
+                        </p>
+                    </div>
+
+                    <!-- Adik Kedua -->
+                    <div class="p-6 rounded-lg shadow-md bg-purple-50 text-center">
+                        <div class="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4 border-4 border-purple-100">
                             <img src="adikkedua.jpg" alt="AdikKedua" class="w-full h-full object-cover">
                         </div>
-                        <h3 class="font-semibold text-lg text-primary mb-2">Adik Kedua</h3>
+                        <h3 class="font-semibold text-lg text-pink-600 mb-2">Adik Kedua</h3>
                         <p class="text-gray-700 font-medium mb-2">Bintara Sihombing</p>
                         <p class="text-gray-600 text-sm mb-2"><i class="fas fa-graduation-cap mr-2"></i>Pelajar SMA</p>
-                        <p class="text-gray-600 text-sm">Adik laki-laki yang penuh energi dan kreatif. Dia selalu membawa warna baru dalam dinamika keluarga kami. Saat ini dia masih duduk dibangku SMA.
-                            Dia adalah anak yang paling jenius dirumah kami. Diumurnya belum ada 5 tahun dia dapat mengerjakan soal matematika anak sd.
-                            Dia lumayan keras kepala tapi masih bisa diarahkan. Selama dia sekolah dia selalu mendapatkan juara 1 dikelasnya. Dia lahir pada 19 Juni 2009.
+                        <p class="text-gray-600 text-sm">
+                            Adik laki-laki yang penuh energi dan kreatif. Dia adalah anak yang paling jenius dirumah kami. 
+                            Dia lahir pada 19 Juni 2009.
                         </p>
                     </div>
                 </div>
 
                 <!-- Momen Keluarga -->
                 <div class="mt-12 text-center">
-                    <h3 class="text-2xl font-semibold text-primary mb-6">Momen Keluarga Berharga</h3>
+                    <h3 class="text-2xl font-semibold text-pink-600 mb-6">Momen Keluarga Berharga</h3>
                     <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="bg-white p-4 rounded-lg shadow-md family-card">
+                        <div class="bg-white p-4 rounded-lg shadow-md">
                             <img src="moment1.jpg" alt="Momen Keluarga 1" class="w-full h-64 object-cover rounded-lg mb-4">
-                            <p class="text-gray-600"
-                            > Foto ini diambil saat Kakakku menikah.
-                            Foto pertama kelurga kami. Pada momen ini adalah momen tersedih karena kami telah melepaskan kakak untuk membuat keluarga baru.
+                            <p class="text-gray-600">
+                                Foto ini diambil saat Kakakku menikah. Foto pertama keluarga kami. Pada momen ini adalah momen tersedih karena kami telah melepaskan kakak untuk membuat keluarga baru.
                             </p>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow-md family-card">
+                        <div class="bg-white p-4 rounded-lg shadow-md">
                             <img src="moment2.jpg" alt="Momen Keluarga 2" class="w-full h-64 object-cover rounded-lg mb-4">
                             <p class="text-gray-600">Ini adalah foto masa kecil kami bersama kakek dan nenek. Foto yang penuh kenangan.</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Education Section -->
-    <section id="pendidikan" class="py-16 px-4 bg-gradient-education">
+    <section id="pendidikan" class="section py-16 px-4 bg-pink-50">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-primary mb-4">Pendidikan</h2>
-                <p class="text-xl text-muted-foreground">Perjalanan akademik saya</p>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mt-4"></div>
+                <h2 class="text-4xl font-bold text-pink-600 mb-4">Pendidikan</h2>
+                <p class="text-xl text-gray-600">Perjalanan akademik saya</p>
+                <div class="w-24 h-1 bg-pink-600 mx-auto rounded-full mt-4"></div>
             </div>
 
-            <div class="relative">
-                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary to-secondary rounded-full"></div>
-
-                <div class="space-y-12">
-                    <div class="flex items-center">
-                        <div class="w-1/2 pr-8">
-                            <div class="p-6 shadow-xl border-0 bg-white/80 backdrop-blur-sm rounded-xl hover:shadow-2xl transition-all duration-300">
-                                <div class="p-0">
-                                    <div class="flex items-center gap-4 mb-4">
-                                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                            <i class="fas fa-graduation-cap text-white text-xl"></i>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-xl font-bold text-primary">Politeknik Negeri Medan</h3>
-                                            <p class="text-secondary font-medium">Teknik Komputer dan Informatika - Semester 5</p>
-                                        </div>
-                                    </div>
-                                    <p class="text-muted-foreground mb-2">Lulus Jalur SNBP, Jurusan Tenik Komputer dan Infomratika, sekarang semester 5</p>
-                                    <span class="border border-border px-2 py-1 rounded-md text-sm">2023 - Sekarang</span>
-                                </div>
-                            </div>
+            <div class="space-y-8">
+                <div class="p-6 shadow-xl bg-white/80 rounded-xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
                         </div>
-
-                        <div class="w-6 h-6 bg-white border-4 border-primary rounded-full z-10 shadow-lg"></div>
-
-                        <div class="w-1/2"></div>
-                    </div>
-
-                    <div class="flex items-center flex-row-reverse">
-                        <div class="w-1/2 pl-8">
-                            <div class="p-6 shadow-xl border-0 bg-white/80 backdrop-blur-sm rounded-xl hover:shadow-2xl transition-all duration-300">
-                                <div class="p-0">
-                                    <div class="flex items-center gap-4 mb-4">
-                                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                            <i class="fas fa-star text-white text-xl"></i>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-xl font-bold text-primary">SMK</h3>
-                                            <p class="text-secondary font-medium">Juara 2</p>
-                                        </div>
-                                    </div>
-                                    <p class="text-muted-foreground mb-2">Prestasi akademik yang konsisten dengan fokus pada teknologi dan Juara 2 Kelas, Ikut Paduan Suara, dan aktif dibagian organisasi</p>
-                                    <span class="border border-border px-2 py-1 rounded-md text-sm">2020 - 2023</span>
-                                </div>
-                            </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-pink-600">Politeknik Negeri Medan</h3>
+                            <p class="text-gray-600 font-medium">Teknik Komputer dan Informatika - Semester 5</p>
                         </div>
-
-                        <div class="w-6 h-6 bg-white border-4 border-primary rounded-full z-10 shadow-lg"></div>
-
-                        <div class="w-1/2"></div>
                     </div>
+                    <p class="text-gray-600 mb-2">Lulus Jalur SNBP, Jurusan Teknik Komputer dan Informatika, sekarang semester 5</p>
+                    <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-md text-sm">2023 - Sekarang</span>
+                </div>
 
-                    <div class="flex items-center">
-                        <div class="w-1/2 pr-8">
-                            <div class="p-6 shadow-xl border-0 bg-white/80 backdrop-blur-sm rounded-xl hover:shadow-2xl transition-all duration-300">
-                                <div class="p-0">
-                                    <div class="flex items-center gap-4 mb-4">
-                                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                            <i class="fas fa-star text-white text-xl"></i>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-xl font-bold text-primary">SMP</h3>
-                                            <p class="text-secondary font-medium">Juara 1</p>
-                                        </div>
-                                    </div>
-                                    <p class="text-muted-foreground mb-2">Pencapaian terbaik dengan dedikasi tinggi dalam belajar. Juara 1 Kelas. Dan banyak betemu orang-orang baru.</p>
-                                    <span class="border border-border px-2 py-1 rounded-md text-sm">2017 - 2020</span>
-                                </div>
-                            </div>
+                <div class="p-6 shadow-xl bg-white/80 rounded-xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-star text-white text-xl"></i>
                         </div>
-
-                        <div class="w-6 h-6 bg-white border-4 border-primary rounded-full z-10 shadow-lg"></div>
-
-                        <div class="w-1/2"></div>
-                    </div>
-
-                    <div class="flex items-center flex-row-reverse">
-                        <div class="w-1/2 pl-8">
-                            <div class="p-6 shadow-xl border-0 bg-white/80 backdrop-blur-sm rounded-xl hover:shadow-2xl transition-all duration-300">
-                                <div class="p-0">
-                                    <div class="flex items-center gap-4 mb-4">
-                                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                            <i class="fas fa-star text-white text-xl"></i>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-xl font-bold text-primary">SD</h3>
-                                            <p class="text-secondary font-medium">Juara 2</p>
-                                        </div>
-                                    </div>
-                                    <p class="text-muted-foreground mb-2">Awal perjalanan akademik dengan prestasi yang membanggakan. Juara 2 Kelas.</p>
-                                    <span class="border border-border px-2 py-1 rounded-md text-sm">2011 - 2017</span>
-                                </div>
-                            </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-pink-600">SMK</h3>
+                            <p class="text-gray-600 font-medium">Juara 2</p>
                         </div>
-
-                        <div class="w-6 h-6 bg-white border-4 border-primary rounded-full z-10 shadow-lg"></div>
-
-                        <div class="w-1/2"></div>
                     </div>
+                    <p class="text-gray-600 mb-2">Prestasi akademik yang konsisten dengan fokus pada teknologi dan Juara 2 Kelas, Ikut Paduan Suara, dan aktif dibagian organisasi</p>
+                    <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-md text-sm">2020 - 2023</span>
+                </div>
+
+                <div class="p-6 shadow-xl bg-white/80 rounded-xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-star text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-pink-600">SMP</h3>
+                            <p class="text-gray-600 font-medium">Juara 1</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-2">Pencapaian terbaik dengan dedikasi tinggi dalam belajar. Juara 1 Kelas. Dan banyak bertemu orang-orang baru.</p>
+                    <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-md text-sm">2017 - 2020</span>
+                </div>
+
+                <div class="p-6 shadow-xl bg-white/80 rounded-xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-star text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-pink-600">SD</h3>
+                            <p class="text-gray-600 font-medium">Juara 2</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-2">Awal perjalanan akademik dengan prestasi yang membanggakan. Juara 2 Kelas.</p>
+                    <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-md text-sm">2011 - 2017</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Motto Section -->
-    <section id="motto" class="py-16 px-4 bg-gradient-motto">
+    <section id="motto" class="section py-16 px-4">
         <div class="max-w-4xl mx-auto text-center">
             <div class="mb-16">
-                <h2 class="text-4xl font-bold text-primary mb-4">Motto Hidup</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+                <h2 class="text-4xl font-bold text-pink-600 mb-4">Motto Hidup</h2>
+                <div class="w-24 h-1 bg-pink-600 mx-auto rounded-full"></div>
             </div>
 
-            <div class="p-12 shadow-2xl border-0 bg-gradient-to-br from-white via-rose-50 to-pink-50 rounded-xl relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"></div>
-                <div class="p-0 relative z-10">
-                    <div class="text-6xl mb-8">🌈✨</div>
-                    <blockquote class="text-2xl md:text-3xl font-bold text-primary leading-relaxed mb-8">
-                        "Apapun yang kamu minta didalam doa dengan penuh kepercayaan, kamu akan menerimanya."
-                    </blockquote>
-                    <p class="text-lg text-muted-foreground leading-relaxed">
-                        Apapun yang kamu minta didalam doa dengan penuh kepercayaan kamu akan menerimanya.
-                    </p>
+            <div class="p-12 shadow-2xl bg-white rounded-xl">
+                <div class="text-6xl mb-8">🌈✨</div>
+                <blockquote class="text-2xl md:text-3xl font-bold text-pink-600 mb-8">
+                    "Apapun yang kamu minta didalam doa dengan penuh kepercayaan, kamu akan menerimanya."
+                </blockquote>
+                <p class="text-lg text-gray-600">
+                    Apapun yang kamu minta didalam doa dengan penuh kepercayaan kamu akan menerimanya.
+                </p>
 
-                    <div class="mt-8 flex justify-center gap-4">
-                        <button class="bg-primary text-primary-foreground py-3 px-8 rounded-md flex items-center">
-                            <i class="fas fa-heart mr-2"></i>
-                            Bagikan Inspirasi
-                        </button>
-                    </div>
+                <div class="mt-8 flex justify-center gap-4">
+                    <button class="bg-pink-600 text-white py-3 px-8 rounded-md flex items-center">
+                        <i class="fas fa-heart mr-2"></i>
+                        Bagikan Inspirasi
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer with Social Media Icons -->
+    <!-- Footer -->
     <footer class="bg-gradient-footer py-12 px-4">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-8">
@@ -701,32 +453,28 @@
                 <!-- Instagram -->
                 <a href="https://www.instagram.com/mirandalbntrn" target="_blank"
                    class="w-14 h-14 rounded-full bg-white/10 border border-white/20 text-white
-                          hover:bg-white hover:text-primary transition-all duration-300
-                          hover:scale-110 flex items-center justify-center">
+                          hover:bg-white hover:text-pink-600 flex items-center justify-center">
                     <i class="fab fa-instagram text-xl"></i>
                 </a>
             
                 <!-- Facebook -->
                 <a href="https://www.facebook.com/mirandalbntrn" target="_blank"
                    class="w-14 h-14 rounded-full bg-white/10 border border-white/20 text-white
-                          hover:bg-white hover:text-primary transition-all duration-300
-                          hover:scale-110 flex items-center justify-center">
+                          hover:bg-white hover:text-pink-600 flex items-center justify-center">
                     <i class="fab fa-facebook-f text-xl"></i>
                 </a>
             
                 <!-- LinkedIn -->
                 <a href="https://www.linkedin.com/in/miranda-sihombing" target="_blank"
                    class="w-14 h-14 rounded-full bg-white/10 border border-white/20 text-white
-                          hover:bg-white hover:text-primary transition-all duration-300
-                          hover:scale-110 flex items-center justify-center">
+                          hover:bg-white hover:text-pink-600 flex items-center justify-center">
                     <i class="fab fa-linkedin-in text-xl"></i>
                 </a>
             
-                <!-- TikTok (baru) -->
+                <!-- TikTok -->
                 <a href="https://www.tiktok.com/@mirandalbntrn" target="_blank"
                    class="w-14 h-14 rounded-full bg-white/10 border border-white/20 text-white
-                          hover:bg-white hover:text-primary transition-all duration-300
-                          hover:scale-110 flex items-center justify-center">
+                          hover:bg-white hover:text-pink-600 flex items-center justify-center">
                     <i class="fab fa-tiktok text-xl"></i>
                 </a>
             </div>
@@ -737,84 +485,29 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 rounded-full shadow-lg z-50 animate-bounce bg-primary text-primary-foreground hidden" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
     <script>
-        // State variables
-        let activeSection = "dashboard";
-        let showBackToTop = false;s
-        let isLoaded = false;
-
-        // Function to scroll to a section
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
-            }
-        }
-
-        // Function to scroll to top
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-
-        // Function to handle scroll events
-        function handleScroll() {
-            // Show/hide back to top button
-            showBackToTop = window.scrollY > 300;
-            document.getElementById('backToTop').style.display = showBackToTop ? 'flex' : 'none';
-
-            // Update active section based on scroll position
-            const sections = ["dashboard", "profil", "keluarga", "pendidikan", "motto"];
-            const scrollPosition = window.scrollY + 100;
-
-            for (const section of sections) {
-                const element = document.getElementById(section);
-                if (element) {
-                    const offsetTop = element.offsetTop;
-                    const offsetHeight = element.offsetHeight;
-                    
-                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-                        activeSection = section;
-                        
-                        // Update navigation buttons
-                        document.querySelectorAll('nav button').forEach(button => {
-                            if (button.textContent.toLowerCase() === section) {
-                                button.classList.add('bg-primary', 'text-primary-foreground', 'shadow-lg');
-                                button.classList.remove('text-muted-foreground', 'hover:text-primary', 'hover:bg-rose-50');
-                            } else {
-                                button.classList.remove('bg-primary', 'text-primary-foreground', 'shadow-lg');
-                                button.classList.add('text-muted-foreground', 'hover:text-primary', 'hover:bg-rose-50');
-                            }
-                        });
-                        
-                        break;
-                    }
-                }
-            }
-        }
-
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            isLoaded = true;
-            
-            // Add scroll event listener
-            window.addEventListener('scroll', handleScroll);
-            
-            // Trigger initial scroll check
-            handleScroll();
-            
-            // Add animations to elements
-            document.querySelectorAll('.animate-fade-in-up').forEach(el => {
-                el.classList.add('opacity-0');
-                setTimeout(() => {
-                    el.classList.remove('opacity-0');
-                }, 200);
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
             });
-        });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update navigation buttons
+            const buttons = document.querySelectorAll('.nav-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Add active class to clicked buttons (both desktop and mobile)
+            const clickedButtons = document.querySelectorAll(`button[onclick="showSection('${sectionId}')"]`);
+            clickedButtons.forEach(button => {
+                button.classList.add('active');
+            });
+        }
     </script>
 </body>
 </html>
