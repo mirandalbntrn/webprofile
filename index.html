@@ -4,50 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miranda Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .bg-gradient-custom {
-            background: linear-gradient(to bottom right, #fecaca, #ffffff, #fbcfe8);
-        }
-        
-        .bg-gradient-footer {
-            background: linear-gradient(to right, #ec4899, #db2777);
-        }
-        
-        .section {
-            display: none;
-        }
-        
-        .section.active {
-            display: block;
-        }
-        
-        .nav-button.active {
-            background-color: #ec4899;
-            color: white;
-        }
-        
-        .nav-button {
-            background-color: white;
-            color: #ec4899;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-nav {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-            
-            .mobile-nav button {
-                flex: 1;
-                min-width: 80px;
-                font-size: 12px;
-                padding: 8px 4px;
-            }
-        }
-    </style>
 </head>
 <body class="min-h-screen bg-gradient-custom">
     <!-- Navigation -->
@@ -484,7 +440,50 @@
             </div>
         </div>
     </footer>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-gradient-custom {
+            background: linear-gradient(to bottom right, #fecaca, #ffffff, #fbcfe8);
+        }
+        
+        .bg-gradient-footer {
+            background: linear-gradient(to right, #ec4899, #db2777);
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        .nav-button.active {
+            background-color: #ec4899;
+            color: white;
+        }
+        
+        .nav-button {
+            background-color: white;
+            color: #ec4899;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .mobile-nav button {
+                flex: 1;
+                min-width: 80px;
+                font-size: 12px;
+                padding: 8px 4px;
+            }
+        }
+    </style>
     <script>
         function showSection(sectionId) {
             // Hide all sections
